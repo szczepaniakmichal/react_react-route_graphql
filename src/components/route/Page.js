@@ -11,4 +11,4 @@ export const Page = () => (
         <Route path='/continents' exact component={ContinentsList} />
         <Route path='/continents/:code' component={Continent}/>
     </Switch>
-)
+);

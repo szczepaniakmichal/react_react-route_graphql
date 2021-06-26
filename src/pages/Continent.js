@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import {
     ApolloClient,
     InMemoryCache,
     gql
 } from "@apollo/client";
 
-const CurrentContinent = ({continentCode}) => (
-    <>
-        <p>{continentCode}</p>
-        <Link to='/continents/'>Go back to continents list</Link>
-    </>
-)
+import { CurrentContinent } from "./CurrentContinent";
 
 export const Continent = ({match}) => {
 
@@ -43,7 +37,7 @@ export const Continent = ({match}) => {
             .then(result => {
                 setCountries(result.data.continent.countries)
             });
-    }, [])
+    }, []);
 
     const countriesJsx = countries.map(countrie => (
         <li key={countrie.name}>
@@ -51,7 +45,7 @@ export const Continent = ({match}) => {
             <p>countrie emoji: {countrie.emoji}</p>
             <p>countrie languages: {countrie.languages[0].name}</p>
         </li>
-    ))
+    ));
 
     return (
         <div>
@@ -60,5 +54,5 @@ export const Continent = ({match}) => {
                 {countriesJsx}
             </ul>
         </div>
-    )
+    );
 };
