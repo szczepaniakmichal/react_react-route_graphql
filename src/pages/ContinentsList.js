@@ -7,7 +7,7 @@ import {
 } from "@apollo/client";
 import { Link } from "react-router-dom";
 
-export const ContinentsList = ({match}) => {
+export const ContinentsList = () => {
 
     const [continents, setContinents] = useState([])
 
