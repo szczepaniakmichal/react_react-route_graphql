@@ -37,7 +37,7 @@ export const Continent = ({match}) => {
                 `
             })
             .then(result => {
-                setCountries(result.data.continent.countries)
+                setCountries(result.data.continent && result.data.continent.countries)
             });
     }, []);
 
@@ -47,9 +47,9 @@ export const Continent = ({match}) => {
         if (heightList && heightList.clientHeight + 160 > windowHeight) {
             setIsLinkGoBack(true);
         }
-    }, [countries.length > 0])
+    }, [countries && countries.length > 0])
 
-    const countriesJsx = countries.length > 0 ? countries.map(countrie => {
+    const countriesJsx = countries && countries.length > 0 ? countries.map(countrie => {
         const {name, emoji, languages} = countrie;
         return (
             <li key={countrie.name}
