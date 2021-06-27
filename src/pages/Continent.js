@@ -4,14 +4,15 @@ import {
     InMemoryCache,
     gql
 } from "@apollo/client";
-
-import { CurrentContinent } from "./CurrentContinent";
 import { Link } from "react-router-dom";
 
-export const Continent = ({match}) => {
+import { CurrentContinent } from "./CurrentContinent";
+import { NoCountries } from "../components/NoCountries";
 
+export const Continent = ({match}) => {
     const [countries, setCountries] = useState([]);
     const [isLinkGoBack, setIsLinkGoBack] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const getCountries = new ApolloClient({
@@ -37,7 +38,8 @@ export const Continent = ({match}) => {
                 `
             })
             .then(result => {
-                setCountries(result.data.continent && result.data.continent.countries)
+                setCountries(result.data.continent && result.data.continent.countries);
+                setLoading(false);
             });
     }, []);
 
@@ -53,7 +55,7 @@ export const Continent = ({match}) => {
         const {name, emoji, languages} = countrie;
         return (
             <li key={countrie.name}
-                className="p-2 border-2 border-gray-200 hover:bg-yellow-200 transition duration-300"
+                className="p-2 border-2 border-gray-200 hover:bg-yellow-200 transition duration-300 text-sm"
             >
                 <p>countrie name: <span className="font-bold">{name || 'no data'}</span></p>
                 <p>countrie emoji: <span className="font-bold">{emoji || 'no data'}</span></p>
@@ -71,9 +73,13 @@ export const Continent = ({match}) => {
     return (
         <div>
             <CurrentContinent continentCode={match.params.code}/>
-            <ul className="countries-list grid grid-cols-3 gap-5 mb-5">
+            <ul className="countries-list grid grid-cols-3 gap-5 mb-5"
+                // style={{display: `${!loading && !countriesJsx ? 'none' : 'grid'}`}}
+            >
                 {countriesJsx}
             </ul>
+            {loading ? <span>Loading...</span> : null}
+            {!loading && !countriesJsx ? <NoCountries continentCode={match.params.code}/> : null}
             {linkJsx}
         </div>
     );
