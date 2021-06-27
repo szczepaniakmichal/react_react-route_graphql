@@ -62,7 +62,7 @@ export const Continent = ({match}) => {
     return (
         <div>
             <CurrentContinent continentCode={match.params.code}/>
-            <ul>
+            <ul className="countries-list grid grid-cols-3 gap-5 mb-5">
                 {countriesJsx}
             </ul>
             {linkJsx}

@@ -34,7 +34,9 @@ export const ContinentsList = () => {
     }, [])
 
     const continentsJsx = continents.map(continent => (
-        <li key={continent.name}>
+        <li key={continent.name}
+            className="border-2 border-gray-200 hover:bg-yellow-200 transition duration-300"
+        >
             <Link to={`/continents/${continent.code}`} >
                 <p>Continent name: {continent.name}</p>
                 <p>Continent code: {continent.code}</p>
@@ -45,8 +47,11 @@ export const ContinentsList = () => {
     return (
         <ApolloProvider client={continents}>
             <div>
-                <p className="bg-yellow-500">ContinentsList</p>
-                <ul>
+                <p className="p-2 bg-yellow-200 text-center">Continents list</p>
+                <Link to='/'
+                      className="block mb-5 p-2 text-center bg-yellow-300 hover:bg-yellow-400 transition duration-300"
+                >Go back to home page</Link>
+                <ul className="flex flex-col gap-2">
                     {continentsJsx}
                 </ul>
             </div>
