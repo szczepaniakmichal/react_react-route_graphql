@@ -46,9 +46,9 @@ export const Continent = ({match}) => {
             <li key={countrie.name}
                 className="p-2 border-2 border-gray-200 hover:bg-yellow-200 transition duration-300"
             >
-                <p>countrie name: <span className="font-bold">{name}</span></p>
-                <p>countrie emoji: <span className="font-bold">{emoji}</span></p>
-                <p>countrie languages: <span className="font-bold">{languages && languages[0] && languages[0].name}</span></p>
+                <p>countrie name: <span className="font-bold">{name || 'no data'}</span></p>
+                <p>countrie emoji: <span className="font-bold">{emoji || 'no data'}</span></p>
+                <p>countrie languages: <span className="font-bold">{languages && languages[0] && languages[0].name || 'no data'}</span></p>
             </li>
         )
     }) : null;
