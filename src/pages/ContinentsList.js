@@ -45,7 +45,7 @@ export const ContinentsList = () => {
     return (
         <ApolloProvider client={continents}>
             <div>
-                <p>ContinentsList</p>
+                <p className="bg-yellow-500">ContinentsList</p>
                 <ul>
                     {continentsJsx}
                 </ul>
