@@ -14,6 +14,8 @@ export const Continent = ({match}) => {
     const [isLinkGoBack, setIsLinkGoBack] = useState(false);
     const [loading, setLoading] = useState(true);
 
+    const depsCountries = countries && countries.length > 0;
+
     useEffect(() => {
         const getCountries = new ApolloClient({
             uri: 'https://countries.trevorblades.com',
@@ -41,7 +43,7 @@ export const Continent = ({match}) => {
                 setCountries(result.data.continent && result.data.continent.countries);
                 setLoading(false);
             });
-    }, []);
+    }, [match.params.code]);
 
     useEffect(() => {
         const heightList = document.querySelector(".countries-list");
@@ -49,10 +51,11 @@ export const Continent = ({match}) => {
         if (heightList && heightList.clientHeight + 160 > windowHeight) {
             setIsLinkGoBack(true);
         }
-    }, [countries && countries.length > 0])
+    }, [depsCountries])
 
     const countriesJsx = countries && countries.length > 0 ? countries.map(countrie => {
         const {name, emoji, languages} = countrie;
+        const isNoData = languages && languages[0] && languages[0].name ? languages[0].name : 'no data';
         return (
             <li key={countrie.name}
                 className="p-2 border-2 border-gray-200 hover:bg-yellow-200 transition duration-300 text-sm"
@@ -60,7 +63,7 @@ export const Continent = ({match}) => {
                 <p>countrie name: <span className="font-bold">{name || 'no data'}</span></p>
                 <p>countrie emoji: <span className="font-bold">{emoji || 'no data'}</span></p>
                 <p>countrie languages: <span
-                    className="font-bold">{languages && languages[0] && languages[0].name || 'no data'}</span></p>
+                    className="font-bold">{isNoData}</span></p>
             </li>
         )
     }) : null;
