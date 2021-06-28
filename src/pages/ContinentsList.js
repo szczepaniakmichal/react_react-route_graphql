@@ -37,7 +37,7 @@ export const ContinentsList = () => {
         <li key={continent.name}
             className="border-2 border-gray-200 hover:bg-yellow-200 transition duration-300"
         >
-            <Link to={`/continents/${continent.code}`} >
+            <Link to={`/continents/${continent.code}`}>
                 <p>Continent name: {continent.name}</p>
                 <p>Continent code: {continent.code}</p>
             </Link>

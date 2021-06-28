@@ -59,7 +59,8 @@ export const Continent = ({match}) => {
             >
                 <p>countrie name: <span className="font-bold">{name || 'no data'}</span></p>
                 <p>countrie emoji: <span className="font-bold">{emoji || 'no data'}</span></p>
-                <p>countrie languages: <span className="font-bold">{languages && languages[0] && languages[0].name || 'no data'}</span></p>
+                <p>countrie languages: <span
+                    className="font-bold">{languages && languages[0] && languages[0].name || 'no data'}</span></p>
             </li>
         )
     }) : null;

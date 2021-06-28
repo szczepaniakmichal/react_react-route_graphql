@@ -8,9 +8,9 @@ import { Error } from "../../pages/Error";
 
 export const Page = () => (
     <Switch>
-        <Route path='/' exact component={HomePage} />
-        <Route path='/continents' exact component={ContinentsList} />
+        <Route path='/' exact component={HomePage}/>
+        <Route path='/continents' exact component={ContinentsList}/>
         <Route path='/continents/:code' component={Continent}/>
-        <Route component={Error} />
+        <Route component={Error}/>
     </Switch>
 );
